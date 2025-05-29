@@ -230,7 +230,6 @@ const BlockedMap = () => {
                         Filtro
                     </option>
                     <option value="NDVI">NDVI</option>
-                    <option value="NDRE">NDRE</option>
                     <option value="RGB">RGB</option>
                 </select>
 
