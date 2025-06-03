@@ -13,15 +13,13 @@ Chart.register(annotationPlugin);
 
 
 
-
-
-const GraficoNDVI = ( {dadosNDVI} ) => {
+const GraficoNDVI = ( {dadosNDVI, qtdDiasLacunas, tituloGrafico} ) => {
     //const [dadosNDVI, setDadosNDVI] = useState([]);
-    const [dataInicio, setDataInicio] = useState('2022-08-01');
-    const [dataFim, setDataFim] = useState('2024-11-01');
+    const [dataInicio, setDataInicio] = useState('2022-06-01');
+    const [dataFim, setDataFim] = useState('2025-06-01');
 
-    const [dataInicioFiltrada, setDataInicioFiltrada] = useState('2022-08-01');
-    const [dataFimFiltrada, setDataFimFiltrada] = useState('2024-11-01');
+    const [dataInicioFiltrada, setDataInicioFiltrada] = useState('2022-06-01');
+    const [dataFimFiltrada, setDataFimFiltrada] = useState('2025-06-01');
 
     const [mediaNDVI, setMediaNDVI] = useState(0);
     const [ultimoNDVI, setUltimoNDVI] = useState('as');
@@ -136,7 +134,7 @@ const GraficoNDVI = ( {dadosNDVI} ) => {
         return novaData;
     }
 
-    async function encontrarLacunas(dados, limiteDias = 20) {
+    async function encontrarLacunas(dados) {
         const allLacunas = [];
         const sortedDados = [...dados].sort((a, b) => new Date(a.capture_date) - new Date(b.capture_date));
     
@@ -145,7 +143,7 @@ const GraficoNDVI = ( {dadosNDVI} ) => {
             const dataAnterior = new Date(sortedDados[i - 1].capture_date);
             const diffDias = (dataAtual - dataAnterior) / (1000 * 60 * 60 * 24);
     
-            if (diffDias > limiteDias) {
+            if (diffDias > qtdDiasLacunas) {
                 allLacunas.push({
                     inicio: modificarData(dataAnterior, 4),
                     fim: modificarData(dataAtual, -4)
@@ -234,9 +232,22 @@ const GraficoNDVI = ( {dadosNDVI} ) => {
                     },
                     annotation: {
                         annotations: annotations
+                    },
+                    title: {
+                        display: true,
+                        text: tituloGrafico,
+                        font: {
+                          size: 18,
+                          weight: "bold"
+                        },
+                        color: '#333',
+                        padding: {
+                          top: 5,
+                          bottom: 10
+                        }
+                      }
                     }
                 }
-            }
         )
     }
 

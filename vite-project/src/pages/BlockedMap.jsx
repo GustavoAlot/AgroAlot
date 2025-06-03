@@ -273,7 +273,33 @@ const BlockedMap = () => {
 
             <Map filtro={renderizacao} centralizacao={centralizacao} />
 
-            {dadosNDVI.length > 0 && <GraficoNDVI dadosNDVI={dadosNDVI} />}
+
+            {dadosNDVI.length > 0 && (
+                <>
+                    <GraficoNDVI 
+                        dadosNDVI={dadosNDVI} 
+                        qtdDiasLacunas={20} 
+                        tituloGrafico={"Série temporal de NDVI"}    
+                    />
+
+                    <GraficoNDVI
+                        qtdDiasLacunas={45}
+                        tituloGrafico={"NDVI médio mensal"}   
+                        dadosNDVI={Object.entries(
+                            dadosNDVI.reduce((acc, cur) => {
+                            const mesAno = cur.capture_date.slice(0, 7); // 'YYYY-MM'
+                            if (!acc[mesAno]) acc[mesAno] = [];
+                            acc[mesAno].push(cur.valor);
+                            return acc;
+                            }, {})
+                        ).map(([mes, valores]) => ({
+                            capture_date: mes + '-01',
+                            valor: valores.reduce((a, b) => a + b, 0) / valores.length,
+                        }))}
+                    />
+                </>
+            )}
+            
         </div>
     );
 };
