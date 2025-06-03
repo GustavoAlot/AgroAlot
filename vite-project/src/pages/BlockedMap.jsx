@@ -56,6 +56,23 @@ const BlockedMap = () => {
         }
     }
 
+    async function fetchPopularNDVI(talhao_id) {
+        try {
+            const tokenJWT = localStorage.getItem('tokenJWT');
+            const response = await fetch(`http://localhost:3000/requestMap/popularNDVI/${talhao_id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 
+                    tokenJWT
+                }),
+            });
+            console.log(response)
+        } catch (error) {
+            console.error('Erro ao popular NDVI:', error);
+        }
+    }
     useEffect(() => {
         async function fetchTalhoesDaPropriedade() {
             try {
@@ -86,9 +103,11 @@ const BlockedMap = () => {
                 console.error('Erro ao carregar propriedades:', error);
             }
         }
+        
 
         fetchTalhoesDaPropriedade();
         fetchDadosTalhao(propriedadeId, talhaoIdParam);
+        fetchPopularNDVI(talhaoIdParam);
     }, [propriedadeId, talhaoIdParam]);
 
     const handleApply = () => {

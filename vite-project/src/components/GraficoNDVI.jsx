@@ -166,7 +166,7 @@ const GraficoNDVI = ( {dadosNDVI} ) => {
                 xMax: lacuna.fim,
                 yMin: 0,
                 yMax: 0.8, // Ajuste conforme o seu eixo Y
-                backgroundColor: 'rgba(0, 123, 255, 0.2)', // Azul claro semi-transparente
+                backgroundColor: 'rgba(0, 123, 255, 0.25)', // Azul claro semi-transparente
                 borderWidth: 0,
             }))
         )
