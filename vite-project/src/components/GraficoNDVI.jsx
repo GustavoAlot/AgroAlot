@@ -13,8 +13,8 @@ Chart.register(annotationPlugin);
 
 
 
-const GraficoNDVI = ( {dadosNDVI, qtdDiasLacunas, tituloGrafico} ) => {
-    //const [dadosNDVI, setDadosNDVI] = useState([]);
+const GraficoNDVI = ( {dadosNDVI, qtdDiasLacunas, tituloGrafico, setGrafico64} ) => {
+
     const [dataInicio, setDataInicio] = useState('2022-06-01');
     const [dataFim, setDataFim] = useState('2025-06-01');
 
@@ -84,6 +84,13 @@ const GraficoNDVI = ( {dadosNDVI, qtdDiasLacunas, tituloGrafico} ) => {
 
     }, [dataInicioFiltrada, dataFimFiltrada, dadosNDVI]);
 
+    useEffect(() => {
+        if(chartRef.current)
+            setTimeout(() => {
+                const img64 = chartRef.current.toBase64Image();
+                setGrafico64(img64);
+            }, 500);
+    }, [chartData]);
 
     useEffect(() => {
         setarAnnotations()
@@ -170,8 +177,6 @@ const GraficoNDVI = ( {dadosNDVI, qtdDiasLacunas, tituloGrafico} ) => {
         )
 
     } 
-
-
 
 
     async function setarOptions(){
@@ -263,6 +268,7 @@ const GraficoNDVI = ( {dadosNDVI, qtdDiasLacunas, tituloGrafico} ) => {
             link.click();
         }
     };
+
 
     return (
         <div className="grafico-container">
