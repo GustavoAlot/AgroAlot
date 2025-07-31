@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 const Map = ( {filtro, centralizacao} ) => {
 
@@ -6,13 +6,6 @@ const Map = ( {filtro, centralizacao} ) => {
     // const [longitude, setLongitude] = useState(-46.019918);
 
     const apiKey = import.meta.env.VITE_API_KEY;
-
-    // useEffect(() => {
-    //     if(centralizacao){
-    //         setLongitude(centralizacao[0])
-    //         setLatitude(centralizacao[1])
-    //     }
-    // }, [centralizacao]);
 
     const loadScript = (url, callback) => {
         const script = document.createElement('script');
@@ -60,7 +53,8 @@ const Map = ( {filtro, centralizacao} ) => {
         if (filtro && centralizacao) {
             initialize(filtro, 16, centralizacao[0], centralizacao[1]);
         } else if (filtro){
-            initialize(filtro, 12.6);
+            console.log(filtro)
+            initialize(filtro, 14, -45.964234, -21.195669);
         }
 
     }, [filtro]);
