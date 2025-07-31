@@ -299,16 +299,12 @@ const BlockedMap = () => {
 
             <NDVIReport
             dados={{
-                proprietario: "Manoel Oliveira",
                 propriedade: propriedade_nome,
                 talhao: talhao_nome,
                 area: talhao_area,
                 cultura: talhao_cultura,
-                nome_engenheiro: 'Augusto Oliveira',
-                crea_engenheiro: 'MG123456',
                 graficoNDVICompleto: grafico64Geral,
                 graficoNDVIMensal: grafico64Normalizado,
-                conclusoes: 'A lavoura apresentou desenvolvimento satisfatório no período seco...',
                 dadosNDVI: dadosNDVI,
                 centralizacao: centralizacao
             }}

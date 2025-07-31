@@ -42,8 +42,8 @@ const Profile = () => {
             {isMenuOpen && (
                 <div className="profile-menu">
                     <ul>
-                        <li>Nome: {userData.name}</li>
-                        <li>Email: {userData.email}</li>
+                        {/* <li>Nome: {userData.name}</li>
+                        <li>Email: {userData.email}</li> */}
                         <li>
                             <button className="edit-account-btn" onClick={handleEditAccount}>Editar Conta</button>
                         </li>

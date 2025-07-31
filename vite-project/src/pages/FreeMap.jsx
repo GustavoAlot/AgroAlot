@@ -29,10 +29,11 @@ const FreeMap = () => {
             return response.json()
         })
         .then((data) => {
+            console.log(data)
             setDataImg('')
             setDataImg(data.data)
             setRenderizacao(data.filtro)
-            setErroInvalido()
+            setErroInvalido('')
         })
         .catch((error) => {
                 console.error('Error:', error);

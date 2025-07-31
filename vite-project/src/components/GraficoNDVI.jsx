@@ -16,10 +16,10 @@ Chart.register(annotationPlugin);
 const GraficoNDVI = ( {dadosNDVI, qtdDiasLacunas, tituloGrafico, setGrafico64} ) => {
 
     const [dataInicio, setDataInicio] = useState('2022-06-01');
-    const [dataFim, setDataFim] = useState('2025-06-01');
+    const [dataFim, setDataFim] = useState('2025-07-02');
 
     const [dataInicioFiltrada, setDataInicioFiltrada] = useState('2022-06-01');
-    const [dataFimFiltrada, setDataFimFiltrada] = useState('2025-06-01');
+    const [dataFimFiltrada, setDataFimFiltrada] = useState('2025-07-02');
 
     const [mediaNDVI, setMediaNDVI] = useState(0);
     const [ultimoNDVI, setUltimoNDVI] = useState('as');
